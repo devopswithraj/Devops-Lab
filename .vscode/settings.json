@@ -1,0 +1,9 @@
+{
+    "workbench.editor.autoLockGroups": {
+        "agentSessionsWelcomePage": true
+    },
+    "workbench.iconTheme": "vs-minimal",
+    "workbench.preferredDarkColorTheme": "Visual Studio Dark",
+    "workbench.preferredHighContrastColorTheme": "Dark 2026",
+    "workbench.preferredLightColorTheme": "Dark 2026"
+}
