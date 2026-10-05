@@ -20,7 +20,7 @@ resource "random_password" "password" {
 # rds instance on that subnet group 
 # ubnet group, SG, password, user, all the infor
 
-resource "aws_db_instance" "default" {
+resource "aws_db_instance" "rds_instance" {
   identifier              = "${var.environment}-${var.prefix}-rds"
   allocated_storage       = 20
   backup_retention_period = 7

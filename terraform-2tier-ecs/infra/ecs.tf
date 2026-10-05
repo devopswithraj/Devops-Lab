@@ -28,7 +28,7 @@ resource "aws_ecs_task_definition" "service" {
         }
         ]
       logConfiguration = {
-        logDriver = "awslogname"
+        logDriver = "awslogs"
         options = {
           awslogs-group         = "/ecs/${var.ecs_task_def}"
           awslogs-region        = var.aws_region
@@ -50,7 +50,7 @@ resource "aws_ecs_service" "app_service" {
   task_definition = aws_ecs_task_definition.service.arn
 
   load_balancer {
-    target_group_arn = aws_alb_target_group.name.arn
+    target_group_arn = aws_lb_target_group.ecs-target.arn
     container_name   = var.container_name
     container_port   = var.port
   }

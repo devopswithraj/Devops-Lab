@@ -13,9 +13,9 @@ resource "aws_route53_record" "app_record" {
   type = "A"
 
   alias {
-    name = aws_alb.app.dns_name
+    name = aws_lb.ecs-alb.dns_name
     # zone id -> for alb
-    zone_id                = aws_alb.app.zone_id
+    zone_id                = aws_lb.ecs-alb.zone_id
     evaluate_target_health = true
   }
 }
