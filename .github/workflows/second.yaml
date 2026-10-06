@@ -37,7 +37,7 @@ jobs:
            whoami
   job4:
     needs: job3
-    runs-on: window-latest
+    runs-on: windows-latest
 
     steps:
       - name: step5
