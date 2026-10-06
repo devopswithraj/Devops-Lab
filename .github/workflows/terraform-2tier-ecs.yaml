@@ -5,9 +5,6 @@
 name: terraform-2tier-ecs
 
 on:
-    # push:
-    #     branches:
-    #         - main
     workflow_dispatch:
 env:
     TF_VERSION: 1.16.0
