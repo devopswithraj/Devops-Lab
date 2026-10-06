@@ -20,7 +20,10 @@ Then import it:
 
     Run terraform plan and terraform appky
 
-  3. Drfit detection - Resources managed by terrsform but on top of it the parts which are manually addedd 
+  3. Drift detection - Resources managed by terrsform but on top of it the parts which are manually addedd 
+
+  4. If any change in the definition , for example. change of name of AWS_DB instance resource, the state file has to be updated manually by removing the entry of the exting name from state file and apply.
+
 b. tfvars always takes precedence and values defined as defauls inside variables.tf will not be invoked. But, varialbles defined in command line takes highes priority
 
 c. To build docker image from src file:
