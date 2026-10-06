@@ -1,37 +1,37 @@
-name: first workflow
+# name: first workflow
 
-on:
-  push:
-    branches: [ "main" ]
+# on:
+#   push:
+#     branches: [ "main" ]
 
-jobs:
+# jobs:
 
-  job1:
+#   job1:
 
-    runs-on: ubuntu-latest
-    steps:
-      - name: step1
-        run: echo "hello,wrold! from step5"
-      - name: step2
-        uses: actions/checkout@v4
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: step1
+#         run: echo "hello,wrold! from step5"
+#       - name: step2
+#         uses: actions/checkout@v4
   
-  job2:
+#   job2:
 
-    runs-on: ubuntu-latest
-    steps:
-      - name: step3
-        run: |
-           echo "Hello"
-           date
-           hostname
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: step3
+#         run: |
+#            echo "Hello"
+#            date
+#            hostname
    
-  job3:
+#   job3:
 
-    runs-on: ubuntu-latest
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: step3
-        run: |
-           ls -al
-           uptime
-           whoami
+#     steps:
+#       - name: step3
+#         run: |
+#            ls -al
+#            uptime
+#            whoami
