@@ -30,19 +30,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: step3
+      - name: step4
         run: |
            ls -al
            uptime
            whoami
   job4:
-
+    needs: job3
     runs-on: window-latest
 
     steps:
-      - name: step3
+      - name: step5
         run: |
-           ls -al
-           uptime
-           whoami
-           uname -a
+           ipconfig
