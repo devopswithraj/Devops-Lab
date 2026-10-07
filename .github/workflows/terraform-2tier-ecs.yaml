@@ -22,7 +22,7 @@ jobs:
                 terraform_version: ${{env.TF_VERSION}}
             
             - name: initiailise terraform
-              run: 
+              run: |
                 cd ${{ env.TF_PATH}}
                 terraform init
 
