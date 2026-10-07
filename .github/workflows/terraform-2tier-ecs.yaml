@@ -17,7 +17,7 @@ jobs:
               uses: actions/checkout@v7
 
             - name: Setup Terraform
-              uses: hashicorp/setup_terraform@v4
+              uses: hashicorp/setup-terraform@v4
               with:
                 terraform_version: ${{env.TF_VERSION}}
             
