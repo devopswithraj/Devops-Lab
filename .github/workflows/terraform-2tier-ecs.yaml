@@ -7,7 +7,7 @@ name: terraform-2tier-ecs
 on:
     workflow_dispatch:
 env:
-    TF_VERSION: 1.16.0
+    TF_VERSION: 1.16.2
     TF_PATH: terraform-2tier-ecs/infra
 jobs:
     terraform-plan:
