@@ -6,6 +6,16 @@ name: terraform-2tier-ecs
 
 on:
     workflow_dispatch:
+        inputs:
+            plan_apply_destroy:
+                description: "Plan, Apply, or Destroy"
+                type: choice
+                required: true
+                default: "plan"
+                options:
+                    - plan
+                    - apply
+                    - destroy
 env:
     TF_VERSION: 1.16.0
     TF_PATH: terraform-2tier-ecs/infra
@@ -34,8 +44,8 @@ jobs:
                 cd ${{ env.TF_PATH}}
                 terraform init
 
-            - name: Plan terraform
+            - name: $ {{ inputs.plan_apply_destroy }} terraform
               working-directory: ${{ env.TF_PATH}}
-              run: terraform plan
+              run: terraform ${{ inputs.plan_apply_destroy }} 
 
 
