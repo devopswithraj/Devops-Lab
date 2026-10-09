@@ -9,7 +9,7 @@ resource "aws_ecs_task_definition" "service" {
   network_mode             = "awsvpc"
   cpu                      = 1024
   memory                   = 2048
- container_definitions = jsonencode([
+  container_definitions = jsonencode([
     {
       name      = var.container_name
       image     = var.app_image
@@ -26,7 +26,7 @@ resource "aws_ecs_task_definition" "service" {
           hostPort      = var.port
           protocol      = "tcp"
         }
-        ]
+      ]
       logConfiguration = {
         logDriver = "awslogs"
         options = {
@@ -38,7 +38,7 @@ resource "aws_ecs_task_definition" "service" {
     }
   ])
   execution_role_arn = aws_iam_role.ecs_task_execution_role.arn
-  depends_on = [ aws_cloudwatch_log_group.ecs_log_group ]
+  depends_on         = [aws_cloudwatch_log_group.ecs_log_group]
 }
 
 # ecs service

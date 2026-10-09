@@ -12,10 +12,10 @@ resource "aws_lb" "ecs-alb" {
 }
 
 resource "aws_lb_target_group" "ecs-target" {
-  name     = "${var.environment}-${var.prefix}-ecs-target-ip"
-  port     = 80
-  protocol = "HTTP"
-  vpc_id   = aws_vpc.vpc.id
+  name        = "${var.environment}-${var.prefix}-ecs-target-ip"
+  port        = 80
+  protocol    = "HTTP"
+  vpc_id      = aws_vpc.vpc.id
   target_type = "ip"
 
   lifecycle {

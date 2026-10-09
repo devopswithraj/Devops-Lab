@@ -32,6 +32,12 @@ jobs:
               with:
                 terraform_version: ${{env.TF_VERSION}}
 
+            - name: Terraform fmt check
+              run: |
+                    cd ${{ env.TF_PATH}}
+                    terraform fmt --check
+
+
             - name: Configure AWS Credentials
               uses: aws-actions/configure-aws-credentials@v4
               with:
@@ -45,6 +51,12 @@ jobs:
                 terraform init
 
             - name: $ {{ inputs.plan_apply_destroy }} terraform
+              if : ${{ inputs.plan_apply_destroy == 'plan' }}
+              working-directory: ${{ env.TF_PATH}}
+              run: terraform ${{ inputs.plan_apply_destroy }} 
+
+            - name: $ {{ inputs.plan_apply_destroy }} terraform
+              if : inputs.plan_apply_destroy == 'apply' || inputs.plan_apply_destroy == 'destroy' 
               working-directory: ${{ env.TF_PATH}}
               run: terraform ${{ inputs.plan_apply_destroy }} 
 
