@@ -55,19 +55,42 @@ jobs:
               run: |
                 cd ${{ env.TF_PATH}}
                 terraform init
+                
+            - name: Check Terraform provider versions
+              working-directory: ${{ env.TF_PATH }}
+              run: |
+                terraform version
+                terraform providers
+                cat .terraform.lock.hcl
 
             - name: $ {{ inputs.plan_apply_destroy }} terraform
               if : ${{ inputs.plan_apply_destroy == 'plan' }}
               working-directory: ${{ env.TF_PATH}}
-              run: terraform ${{ inputs.plan_apply_destroy }} 
+              timeout-minutes: 10
+              env:
+                TF_LOG: INFO
+              run: |
+                echo "Starting Terraform plan..."
+                terraform plan -input=false -no-color -lock-timeout=5m
+                echo "Terraform plan completed successfully."
 
             - name: $ {{ inputs.plan_apply_destroy }} terraform
               if : ${{ inputs.plan_apply_destroy == 'apply' }} 
               working-directory: ${{ env.TF_PATH}}
-              run: terraform ${{ inputs.plan_apply_destroy }} 
+              env:
+                TF_LOG: INFO
+              run: |
+                echo "Starting Terraform apply..."
+                terraform apply -input=false -auto-approve -no-color -lock-timeout=5m
+                echo "Terraform apply completed successfully." 
             
             - name: $ {{ inputs.plan_apply_destroy }} terraform
               if : ${{ inputs.plan_apply_destroy == 'destroy' }} 
               working-directory: ${{ env.TF_PATH}}
-              run: terraform ${{ inputs.plan_apply_destroy }}
+              env:
+                TF_LOG: INFO
+              run: |
+                echo "Starting Terraform destroy..."
+                terraform destroy -input=false -auto-approve -no-color -lock-timeout=5m
+                echo "Terraform destroy completed successfully." 
 

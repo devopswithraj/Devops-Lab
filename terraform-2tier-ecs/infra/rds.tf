@@ -49,6 +49,7 @@ resource "aws_db_instance" "rds_instance" {
 resource "aws_secretsmanager_secret" "rds_password" {
   name        = "${var.environment}-${var.prefix}-rds"
   description = "Password for rds instance"
+  recovery_window_in_days = 0
 }
 
 # aws secret manager version for rds password
