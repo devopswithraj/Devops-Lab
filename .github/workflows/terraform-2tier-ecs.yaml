@@ -16,6 +16,11 @@ on:
                     - plan
                     - apply
                     - destroy
+
+concurrency:
+  group: terraform-2tier-ecs
+  cancel-in-progress: false
+
 env:
     TF_VERSION: 1.16.0
     TF_PATH: terraform-2tier-ecs/infra
@@ -23,6 +28,7 @@ env:
 jobs:
     terraform-plan:
         runs-on: ubuntu-latest
+        timeout-minutes: 30
         steps:
             - name: Checkout code
               uses: actions/checkout@v7
@@ -56,8 +62,12 @@ jobs:
               run: terraform ${{ inputs.plan_apply_destroy }} 
 
             - name: $ {{ inputs.plan_apply_destroy }} terraform
-              if : inputs.plan_apply_destroy == 'apply' || inputs.plan_apply_destroy == 'destroy' 
+              if : ${{ inputs.plan_apply_destroy == 'apply' }} 
               working-directory: ${{ env.TF_PATH}}
               run: terraform ${{ inputs.plan_apply_destroy }} 
-
+            
+            - name: $ {{ inputs.plan_apply_destroy }} terraform
+              if : ${{ inputs.plan_apply_destroy == 'destroy' }} 
+              working-directory: ${{ env.TF_PATH}}
+              run: terraform ${{ inputs.plan_apply_destroy }}
 
