@@ -26,7 +26,7 @@ env:
     TF_PATH: terraform-2tier-ecs/infra
     AWS_REGION: us-east-1
 jobs:
-    terraform-plan:
+    terraform-2tier-ecs:
         runs-on: ubuntu-latest
         timeout-minutes: 30
         steps:
@@ -55,7 +55,7 @@ jobs:
               run: |
                 cd ${{ env.TF_PATH}}
                 terraform init
-                
+
             - name: Check Terraform provider versions
               working-directory: ${{ env.TF_PATH }}
               run: |
